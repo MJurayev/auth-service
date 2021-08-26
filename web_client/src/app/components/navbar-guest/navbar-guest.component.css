@@ -1,0 +1,27 @@
+
+
+.navbar-container{
+    display: flex;
+    align-items: center;
+    /* padding: 10px 0; */
+}
+.navbar-link, .logo{
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+.navbar-item{
+    display: flex;
+}
+.navbar-item:hover{
+    background-color: #2b6597;
+}
+ul, ol {
+    margin-bottom: 0;
+}
+
+
+.navbar-box{
+    display: flex;
+    align-items: center;
+}

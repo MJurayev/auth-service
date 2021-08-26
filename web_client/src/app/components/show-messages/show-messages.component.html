@@ -1,0 +1,5 @@
+<ng-container >
+    <div class="alert-container"> 
+        <app-message-alert *ngFor="let message of messages" [type]="message.type" [message]="message.message"></app-message-alert>
+    </div>
+</ng-container>

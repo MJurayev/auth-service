@@ -1,0 +1,22 @@
+.login-form{
+    /* display: flex; */
+    /* flex-direction: column; */
+    max-width:500px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 100px;  
+}
+.login-submit-button{
+    width: 100%;
+   
+}
+.login-submit-button:active,.login-submit-button:focus{
+    outline: none;
+}
+.login-bottom-link{
+    margin-top: 20px;
+}
+
+.login-field{
+    display: flex;
+}

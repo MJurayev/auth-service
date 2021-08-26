@@ -1,0 +1,31 @@
+.register-form{
+    max-width:500px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 100px;  
+}
+
+.register-submit-button{
+    width: 100%; 
+}
+.confirm-button{
+    margin-top: 10px;
+}
+.register-submit-button:active,.register-submit-button:focus{
+    outline: none;
+}
+
+
+.register-bottom-link{
+    margin-top: 20px;
+}
+
+.naming-group{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 5px;
+}
+
+.col{
+    display: grid;
+}

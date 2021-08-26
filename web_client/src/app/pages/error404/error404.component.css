@@ -1,0 +1,38 @@
+.error-404-box{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-404-content{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    width: 100%;
+}
+.error-404-code{
+    text-align: center;
+    font-size: 72px;
+    font-weight: 900;
+}
+
+.error-404-text{
+    text-align: center;
+    font-size: 36px;
+
+}
+.error-404-button{
+    display:flex;
+    justify-content: center;
+    padding: 10px;
+}
+.error-404-link{
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    text-align: center;
+    width: fit-content;
+}

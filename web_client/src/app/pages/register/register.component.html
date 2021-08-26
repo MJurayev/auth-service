@@ -1,0 +1,72 @@
+<app-navbar-guest></app-navbar-guest>
+<div class="container">
+    <div  class="register-form">
+        <form *ngIf="registerStep===0" [formGroup]="registerForm">
+            
+            <div class="form-group naming-group">
+                <div class="col">
+                    <label for="firstname">Firstname Name</label>
+                    <input formControlName="firstname" type="text" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter first name">
+                    <div *ngIf="firstname.invalid && firstname.touched " class="text-danger">
+                        <small *ngIf="firstname.errors?.required">Ism kiritish shart</small>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="lastname">Surname Name</label>
+                    <input formControlName="lastname" type="text" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter last name">
+                    <small>Fammiliya kiritish ixtiyoriy</small>
+                </div>
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+                <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <div *ngIf="email.invalid && email.touched " class="text-danger">
+                    <small *ngIf="email.errors?.required">Email kiritish shart</small>
+                    <small *ngIf="email.errors?.email">Email kiritish shart</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+                <input  formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <div *ngIf="password.invalid && password.touched " class="text-danger">
+                    <small *ngIf="password.errors?.required">Parol kiritish shart</small>
+                    <small *ngIf="password.errors?.minLength">Parol minimum 8ta belgidan iborat bo'lishi kerak</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword2">Re-enter password</label>
+                <input formControlName="re_password" type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                <div *ngIf="re_password.invalid && re_password.touched " class="text-danger">
+                    <small *ngIf="re_password.errors?.required">Parol kiritish shart</small>
+                    <small *ngIf="password.errors?.minLength">Parol minimum 8ta belgidan iborat bo'lishi kerak</small>
+                    <small *ngIf="registerForm.hasError('notSame')">Parollar o'xshash emas</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPhone">Phone number</label>
+                <input formControlName="phone" type="phone" class="form-control" id="exampleInputPhone" placeholder="Password">
+                <div *ngIf="phone.invalid && phone.touched " class="text-danger">
+                    <small *ngIf="phone.errors?.pattern">Phone number example: +998902121212 or +998 90-212-12-12</small>
+                </div>
+            </div>
+            <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button (click)="onClickRegister()" type="submit" [disabled]="registerForm.invalid || isLoading" class="btn btn-sm btn-primary register-submit-button">Submit</button>
+        </form>
+        
+
+        <form *ngIf="registerStep===1" class="form-group">
+            <label for="verificationCode">Please Enter verification code</label>
+            <input [(ngModel)]="confirmCode" [ngModelOptions]="{standalone: true}" class="form-control" id="verificationCode" type="text" placeholder="Enter verification code here">
+            <button (click)="onConfirmWithCode()" type="submit" class="confirm-button btn btn-sm btn-info">Confirm</button>
+        </form>
+
+        <div class="register-bottom-link">
+            Already You have account?<a [routerLink]="['/login']" [queryParams]={returnUrl:returnUrl}>Login</a>
+        </div>
+    </div>
+</div>

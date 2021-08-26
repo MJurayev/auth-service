@@ -1,0 +1,13 @@
+<ng-container >
+    <div class="container"  
+        [class.error]="type == 'error'"
+        [class.success]="type == 'success'"
+        [class.info]="type == 'info'"
+        [class.warning]="type == 'warning'"
+        [class]="show ? 'alert-show' : 'alert-hide'" 
+        (dblclick)="toggle()" 
+        [style.display]="showLazy ? '':'none'" >
+        {{message}}
+        <div (click)="toggle()" class="exit-icon"> </div>
+    </div>
+</ng-container>

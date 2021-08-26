@@ -1,0 +1,18 @@
+version: "3"
+services:
+      app:
+        container_name: app
+        image: 127.0.0.1:5000/auth-service
+        restart: always
+        build: .
+        ports:
+          - 8000:8000
+        links:
+          - mongo
+      mongo:
+        container_name: mongo
+        image: mongo
+        volumes:
+          - ./data:/data/db
+        expose:
+          - 27017

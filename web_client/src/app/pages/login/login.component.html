@@ -1,0 +1,39 @@
+<app-navbar-guest></app-navbar-guest>
+<div class="container">
+    <div class="login-form">
+      <form [formGroup]="loginForm">
+        <div class="text-center text-info h3"> Login</div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <div class="input-group login-field">
+            <input formControlName="login" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" aria-describedby="basic-addon2"  [readonly]="isLoading"/>
+          </div>
+          <div *ngIf="(login.touched || login.dirty) && login.invalid" class="text-danger">
+            <small *ngIf="login.errors?.required">Email maydoni bo'sh bo'lmasligi kerak</small>
+            <small *ngIf="login.errors?.email">Faqat email kiritish shart</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input formControlName="password" type="password" class="form-control " id="exampleInputPassword1" placeholder="Password" [readonly]="isLoading" />
+          <div *ngIf="password.touched && password.invalid" class="text-danger">
+            <small *ngIf="password.errors?.required">Parol bo'sh bo'lishi mumkin emas</small>
+            <small *ngIf="password.errors?.minLength">Parol minimum 8ta belgidan iborat bo'lishi kerak</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input id="use-phone" type="checkbox" class="form-check" />
+          <label for="use-phone"> Use Phone Number </label>
+        </div>
+        <button (click)="onClickLogin()" [disabled]="loginForm.invalid || isLoading" class="btn btn-primary login-submit-button">Submit</button>
+      </form>
+     <div class="login-bottom-link">
+      <!-- "`{?returnUrl= + returnUrl} -->
+       You have account? <a [routerLink]="['/register']" [queryParams]={returnUrl:returnUrl}>Register</a>
+     </div>
+    </div>
+
+      
+</div>

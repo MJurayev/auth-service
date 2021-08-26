@@ -1,0 +1,6 @@
+{
+    "DATABASE_URI":"mongodb://localhost:27017",
+    "JWT_SECRET":"jwt_secret",
+    "EMAIL":"deleted2106@gmail.com",
+    "EMAIL_PASSWORD":"21ADMIN06"
+}
