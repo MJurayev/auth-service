@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '14.16.1'
       - name: "Setup tests"
-        run: npm test
+        run: cd api && npm test
       
   build:
     needs: [test]
