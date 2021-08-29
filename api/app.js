@@ -8,10 +8,11 @@ const cors = require('cors')
 const winston = require('winston')
 const sendSMS = require('./src/utils/sendSms')
 
-app.use(cors())
+// app.use(cors())
 
 app.use(express.urlencoded({extended:true}))
 app.use( '/uploads',express.static('uploads'))
+app.use( express.static('build'))
 
 require('./src/startup/logger')
 require('./src/startup/db')
@@ -21,7 +22,6 @@ if(!config.get('JWT_SECRET')){
   winston.error('JWT_SECRET o\'zgaruvchisi aniqlanmadi', "App.js 21-qator")
   process.exit(1)
 }
-
 const port = process.env.PORT
 const env = process.env.NODE_ENV || 'development'
 http.listen(port,()=>{

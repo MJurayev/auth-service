@@ -2,5 +2,8 @@
     "DATABASE_URI":"mongodb://localhost:27017",
     "JWT_SECRET":"jwt_secret",
     "EMAIL":"deleted2106@gmail.com",
-    "EMAIL_PASSWORD":"21ADMIN06"
+    "EMAIL_PASSWORD":"21ADMIN06",
+    "TWILIO_ACCOUNT_SID":"ACea4351eef6072c72a74f9d251b73e016",
+    "TWILIO_AUTH_TOKEN":"104a2f46291460716ee3dd525dadb892",
+    "TWILIO_NUMBER":"+18647400803"
 }
