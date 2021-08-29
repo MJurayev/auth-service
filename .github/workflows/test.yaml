@@ -7,9 +7,9 @@ on:
 jobs:
 
   test:
-    image: FROM node:14.16.1-alpine
-    script: 
-      - npm test
+    runs-on: node:14.16.1-alpine
+    steps: 
+      - run: npm test
   build:
     runs-on: ubuntu-latest
     steps:
