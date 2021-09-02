@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "576c9c37-2d2a-4448-a9ce-4f955818b952",
+		"name": "microservice-Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "GET ALL USERS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-service-token",
+								"value": "eyJhbGciOiJIUI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTExMzRhNjJiNmJiZDFlZmZmOWQyYmUiLCJwaG9uZSI6Iis5OTg5MjEyMTAxMDIiLCJleHBpcmVzIjoxNjI4NTYwNzU4NzU5LCJpYXQiOjE2Mjg1MTc1NTgsImV4cCI6MTYyODUxODQ1OH0.Y44XpnxtHviXZ-dwQW9KZsR5htBEXrG08f-TcYmnOxY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:31001/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31001",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST USER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\":\"+998906668701\",\r\n    \"firstname\":\"Sunnat\",\r\n    \"lastname\":\"Tuychiyev\",\r\n    \"password\":\"21admin06\",\r\n    \"repeat_password\":\"21admin06\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT USER",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"salom\",\r\n    \"image\":\"image1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/users/60e4c23967f9c231f81b3e52",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"60e4c23967f9c231f81b3e52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete USER",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/users/60dab4699e436b47c8e5d3be",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"60dab4699e436b47c8e5d3be"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "password",
+									"value": "21admin06",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+998921210102",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Oqboyev",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "Sirojiddin",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:31001/api/auth/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31001",
+							"path": [
+								"api",
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"jurayevmansurbek667@gmail.com\",\r\n    \"password\":\"21admin06\",\r\n    \"type\":\"email\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RequestSendSMS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"jurayevmansurbek667@gmail.com\",\r\n    \"type\":\"email\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/request-send-sms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"request-send-sms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VerifyWith Code and Phone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"jurayevmansurbek667@gmail.com\",\r\n    \"code\":\"59319\",\r\n    \"type\":\"email\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/confirm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-service-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTExMjZhNDZmMzdmMWE2ODM2ZDE3ZmMiLCJwaG9uZSI6Iis5OTg5MjEyMTAxMDIiLCJleHBpcmVzIjoxNjI4NTU3MzkwMTU3LCJpYXQiOjE2Mjg1MTQxOTAsImV4cCI6MTYyODUxNTA5MH0.1TK-QKfVppRFXg3B3ibRdQcytztjuGRfcfvEylGHKZM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/auth/check-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"check-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "revoke refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\":\"44d2f2e78f2fcf4aa4d30e6b0cfec74c3461e179972d8ed35ba8000e5addcae4fbbfd4864336746a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/revoke-token",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"revoke-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot password",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
