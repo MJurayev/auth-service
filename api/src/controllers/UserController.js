@@ -1,4 +1,4 @@
-const { User, validateUser, validateUserForUpdate, checkUsernameExist, checkPhoneExist } = require('../models/Users')
+const { User, validateUser, validateUserForUpdate, checkPhoneExist } = require('../models/Users')
 const bcrypt = require('bcrypt')
 const _ = require('lodash')
 const path = require('path')
@@ -11,16 +11,13 @@ const UserPost = async (data) => {
     if (validation.error)
         return makeResponse(400, { error:validation.error.details[0].message })
     
-    const { username, phone, password, image, firstname, lastname , email } = data
+    const { phone, password, image, firstname, lastname , email } = data
 
     const resolveImage =image ? `/uploads/${image}` : undefined
 
-    if (username && await checkUsernameExist(username)) 
-            return makeResponse(400, { error:"Username already taken" })
     if (phone && await checkPhoneExist(phone))
         return makeResponse(400, { error:"Phone already registered!!" })
     const user = new User({
-        username,
         password,
         firstname,
         lastname,
@@ -48,10 +45,7 @@ const UserPut = async ( id,data) => {
         return  makeResponse(400,{error:validation.error.details[0].message})
 
     const foundUser = await User.findOne({ _id: id })
-    
-    if (foundUser && foundUser.username && data.username && foundUser.username != data.username && await checkUsernameExist(data.username))
-        return  makeResponse(400,{error:"Username already taken!!"})
-        
+      
     if (foundUser && foundUser.phone && data.phone && foundUser.phone !== data.phone && await checkPhoneExist(data.phone))
         return  makeResponse(400,{error:"Phone already registered!!"})
 
