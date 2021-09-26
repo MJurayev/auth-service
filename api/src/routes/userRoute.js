@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-
 const  { UserPost , UserPut, UserGetAll, UserDelete } = require('../controllers/UserController')
 const auth = require('../middleware/auth')
 router.use(auth)
