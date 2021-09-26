@@ -29,7 +29,7 @@ RUN npm i bcrypt
 RUN mkdir build
 COPY --from=build-cache /web_client/dist/todo1 /auth_service/build
 
-#
+# set enviroment variable
 ENV PORT=8000
 ENV NODE_ENV=production
 EXPOSE 8000

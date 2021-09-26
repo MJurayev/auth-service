@@ -26,26 +26,11 @@ const userSchema = new mongoose.Schema({
         required:true
     },
     lastname:{
-        type:String,
-        required:true
+        type:String
     },
     image:{
         type:String
-    },
-    //userName started with @ 
-    username:{
-        type:String
-    },
-    online:{
-        type:Boolean
     }
-    // accessToken:{
-    //     type:String
-    // },
-    // refreshToken:{
-    //     type:String
-    // }
-
 }, {timestamps:true})
 userSchema.set('toJSON', {
     virtuals: true,
@@ -58,14 +43,12 @@ userSchema.set('toJSON', {
 
 const validateUser = (user)=>{
     const schema  = Joi.object({
-        username:Joi.string().min(4),
         lastname:Joi.string(),
         firstname:Joi.string().required(),
         phone:Joi.string().pattern(new RegExp("^([+1-9]{4}) ?-?[0-9]{2} ?-?[0-9]{3} ?-?[0-9]{2} ?-?[0-9]{2}$")).required(), // +998998892101 +998-99-889-21-01  +998 29 687 21 06 for uzbek numbers
         password:Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
         email:Joi.string().email({ minDomainSegments: 2}),
-        image:Joi.string(),
-        online:Joi.boolean()
+        image:Joi.string()
     })
 
     return schema.validate(user)
@@ -81,16 +64,14 @@ userSchema.methods.generateAuthToken = function () {
         isVerified:this.isVerified,
         image:this.image,
         email:this.email,
-        username:this.username
     },
     config.get('JWT_SECRET'), 
-    { expiresIn:"15m" });
+    { expiresIn:"7d" });
     return token;
   }
 
 const validateUserForUpdate = (user)=>{
     const schema  = Joi.object({
-        username:Joi.string().alphanum().min(4),
         lastname:Joi.string().alphanum(),
         firstname:Joi.string().alphanum(),
         phone:Joi.string().pattern(new RegExp("^([+1-9]{4}) ?-?[0-9]{2} ?-?[0-9]{3} ?-?[0-9]{2} ?-?[0-9]{2}$")), // +998998892101 +998-99-889-21-01  +998 29 687 21 06 for uzbek numbers
@@ -98,17 +79,9 @@ const validateUserForUpdate = (user)=>{
         repeat_password: Joi.ref('password'),
         email:Joi.string().email({ minDomainSegments: 2}),
         image:Joi.string(),
-        online:Joi.boolean()
     })
 
     return schema.validate(user)
-}
-
-const checkUsernameExist =async (username) => {
-    const user = await User.findOne({username:username})
-    if(user)
-        return true 
-    return false
 }
 
 const checkPhoneExist =async (phone) => {
@@ -126,6 +99,6 @@ const checkEmailExist =async (email) => {
 }
 
 const User = mongoose.model('Users', userSchema)
-module.exports={User, validateUser , checkEmailExist ,validateUserForUpdate, checkUsernameExist, checkPhoneExist} 
+module.exports={User, validateUser , checkEmailExist ,validateUserForUpdate, checkPhoneExist} 
 
 
