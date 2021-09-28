@@ -1,13 +1,13 @@
 const { MulterError } = require("multer")
+const { InternalServerErrorResponse, FailureResponse } = require("../../core/ApiResponse")
 const { uploadProfileImage } = require("../utils/upload")
 
 const uploadImage=(req, res, next)=>{
-
     uploadProfileImage(req, res, (err)=>{
         if(err instanceof MulterError){
-            res.status(400).send(err)
+            return new FailureResponse("Bad Request").send(res)
         }else{
-            res.status(500).send("Something went wrong")
+            return new InternalServerErrorResponse().send(res)
         }
     })
     next()

@@ -31,7 +31,6 @@ const UserPost = async (data) => {
    
     if (!await user.save())
         return makeResponse(500, { error:"Database Error!!!" })
-    // const temp = JSON.parse(JSON.stringify(user))
     return  makeResponse(201,user)
 }
 
