@@ -14,6 +14,8 @@ app.use(express.urlencoded({extended:true}))
 app.use( '/uploads',express.static('uploads'))
 app.use( express.static('build'))
 
+
+//startups
 require('./src/startup/logger')
 require('./src/startup/db')
 require('./src/startup/routes')(app)
@@ -22,9 +24,9 @@ if(!config.get('JWT_SECRET')){
   winston.error('JWT_SECRET o\'zgaruvchisi aniqlanmadi', "App.js 21-qator")
   process.exit(1)
 }
-const port = process.env.PORT
+const port = process.env.PORT || 8000
 const env = process.env.NODE_ENV || 'development'
 http.listen(port,()=>{
-  console.log(`${port} da- ${env} server ishlayapti....`)
+  console.info(`${port} da- ${env} server ishlayapti....`)
   winston.info(`${port} da- ${env} server ishlayapti....`)
 })

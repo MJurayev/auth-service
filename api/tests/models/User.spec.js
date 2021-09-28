@@ -12,4 +12,9 @@ describe('User - generateAuthToken', () => {
         const decoded = jwt.verify(token, config.get('JWT_SECRET'))
         expect(decoded).toMatchObject(payload)
     })
+
+
+    it('')
 });
+
+

@@ -9,6 +9,7 @@ const { makeResponse }= require('../utils/response')
 const { RefreshToken, generateRefreshToken } = require('../models/Tokens')
 const { sendEmail } = require('../utils/sendEmail')
 const { generateCode } = require('../utils/generateCode')
+const { NotFoundResponse } = require('../../core/ApiResponse')
 
 //user login qilish uchun controller
 
@@ -41,7 +42,7 @@ const UserLogin = async (data, ipAddress) =>{
     
     const refreshToken = await refreshTokenInstance.save()
     if(!refreshToken)
-        throw new Error({error:"Something went wrong!!!"})
+        throw new Error()
         return makeResponse(200, { access_token:token, refresh_token:refreshToken.token })
 }
 
@@ -52,15 +53,18 @@ const RequestTokenRefresh =async (refreshToken, ipAddress) => {
     const currentRefreshToken = await RefreshToken.findOne({token:refreshToken}).populate('user')
     
     if(!currentRefreshToken)
+        throw new NotFoundResponse('Token not found')
         return makeResponse(404, { error:"Token not found" })
     console.log(currentRefreshToken.user)
     if(currentRefreshToken.isExpired)
         return makeResponse(401, {error:"Refresh token is expired"})
     const { user } = currentRefreshToken
     const newRefreshToken = generateRefreshToken()
+
     currentRefreshToken.revoked = Date.now()
     currentRefreshToken.revokedByIp = ipAddress
     currentRefreshToken.replacedByToken = newRefreshToken
+    
     await currentRefreshToken.save()
 
     const newRefreshTokenInstance = new RefreshToken({
