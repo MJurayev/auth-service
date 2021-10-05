@@ -8,7 +8,7 @@ const cors = require('cors')
 const winston = require('winston')
 const sendSMS = require('./src/utils/sendSms')
 
-// app.use(cors())
+app.use(cors())
 
 app.use(express.urlencoded({extended:true}))
 app.use( '/uploads',express.static('uploads'))
