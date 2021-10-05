@@ -13,8 +13,6 @@ describe('User - generateAuthToken', () => {
         expect(decoded).toMatchObject(payload)
     })
 
-
-    it('')
 });
 
 
